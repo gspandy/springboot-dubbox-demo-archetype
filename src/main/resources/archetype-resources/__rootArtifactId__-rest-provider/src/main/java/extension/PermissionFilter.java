@@ -6,11 +6,14 @@ package ${package}.extension;
 import ${package}.security.BitPermission;
 import ${package}.security.PermissionEnum;
 
+import com.google.common.collect.Lists;
 import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authz.UnauthorizedException;
 import org.apache.shiro.subject.Subject;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.annotation.Priority;
 import javax.ws.rs.Priorities;

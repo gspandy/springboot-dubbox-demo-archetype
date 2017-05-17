@@ -32,7 +32,7 @@
     <!-- use tomcat server -->
     <dubbo:protocol name="rest" port="7890" threads="500" contextpath="${rootArtifactId}/api" server="servlet"
                     accepts="500"
-                    extension="com.its.smart.extension.SmartExceptionMapper,
+                    extension="${package}.extension.SmartExceptionMapper,
                     ${package}.extension.TimerFilter,
                     ${package}.extension.PermissionFilter"/>
 

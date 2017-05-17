@@ -21,7 +21,7 @@ import org.springframework.context.annotation.ImportResource;
 
 @SpringBootApplication
 @ServletComponentScan
-@ImportResource({"classpath:META-INF/spring/smart-dubbo.xml"})
+@ImportResource({"classpath:META-INF/spring/${rootArtifactId}-dubbo.xml"})
 public class SmartApplication {
 
     public static void main(String[] args) {

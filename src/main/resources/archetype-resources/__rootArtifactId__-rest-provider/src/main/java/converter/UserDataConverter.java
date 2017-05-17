@@ -4,9 +4,7 @@
 package ${package}.converter;
 
 import ${package}.dto.UserDTO;
-import ${package}.entity.Business;
 import ${package}.entity.User;
-import ${package}.service.BusinessService;
 
 import com.google.common.collect.Lists;
 
@@ -26,15 +24,15 @@ import java.util.List;
 @Component
 public class UserDataConverter implements DataConverter<UserDTO, User> {
 
-    @Autowired
-    BusinessService businessService;
+    // @Autowired
+    // BusinessService businessService;
 
     @Override
     public UserDTO doForward(User user) {
-        Business business = businessService.detail(user.getBusinessId());
+        // Business business = businessService.detail(user.getBusinessId());
         UserDTO userDTO = new UserDTO();
         BeanUtils.copyProperties(user, userDTO);
-        userDTO.setBusinessName(business.getDisplayName());
+        // userDTO.setBusinessName(business.getDisplayName());
         return userDTO;
     }
 

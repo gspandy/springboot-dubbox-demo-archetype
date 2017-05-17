@@ -5,16 +5,7 @@ package ${package}.security.realm;
 
 import ${package}.dto.ListFilter;
 import ${package}.dto.SearchFilter;
-import ${package}.entity.Function;
-import ${package}.entity.Role;
-import ${package}.entity.RoleFunctionRel;
-import ${package}.entity.RoleUserRel;
 import ${package}.entity.User;
-import ${package}.security.BitPermission;
-import ${package}.service.FunctionService;
-import ${package}.service.RoleFunctionRelService;
-import ${package}.service.RoleService;
-import ${package}.service.RoleUserRelService;
 import ${package}.service.UserService;
 
 import com.google.common.base.Splitter;
