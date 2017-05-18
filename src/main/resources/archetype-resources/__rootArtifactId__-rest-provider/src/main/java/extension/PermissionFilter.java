@@ -65,6 +65,7 @@ public class PermissionFilter implements ContainerRequestFilter {
         modelName = modelName.substring(0, modelName.lastIndexOf("/"));
         List<String> modelNames = Lists.newArrayList();
         modelNames.add("accounts");
+        modelNames.add("doc");
         return modelNames.contains(modelName.toLowerCase());
     }
 

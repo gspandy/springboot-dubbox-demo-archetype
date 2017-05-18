@@ -19,7 +19,7 @@ public class SwaggerConfig {
         BeanConfig beanConfig = new BeanConfig();
 
         beanConfig.setSchemes(new String[]{"http"});
-        beanConfig.setResourcePackage("com.its.smart.facade");
+        beanConfig.setResourcePackage("${package}.facade");
         beanConfig.setVersion("1.0");
         beanConfig.setHost("127.0.0.1:7890");
         beanConfig.setBasePath("/smart/api");
