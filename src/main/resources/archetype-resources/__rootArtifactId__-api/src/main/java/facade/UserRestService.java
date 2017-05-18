@@ -10,6 +10,6 @@ import ${package}.dto.UserDTO;
  * <p>
  * Created by tom on 2017-03-07 13:25:01.
  */
- public interface UserRestService extends CURDRestService<UserDTO> {
+ public interface UserRestService extends CURDRestService<UserDTO>,Converter<UserDTO, User> {
 
  }

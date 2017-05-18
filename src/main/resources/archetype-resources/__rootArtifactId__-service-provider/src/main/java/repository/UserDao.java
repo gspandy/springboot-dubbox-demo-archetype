@@ -11,5 +11,5 @@ package ${package}.repository;
 import ${package}.entity.User;
 
 public interface UserDao extends DaoBase<User> {
-
+  User findByLoginName(String loginName);
 }

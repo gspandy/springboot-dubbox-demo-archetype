@@ -28,4 +28,8 @@ public class UserServiceImpl extends CURDServiceBase<User> implements UserServic
     @Autowired
     private UserDao dao;
 
+    @Override
+    public User getUserByLoginName(@NotBlank @NotNull String loginName) {
+        return dao.findByLoginName(loginName);
+    }
 }

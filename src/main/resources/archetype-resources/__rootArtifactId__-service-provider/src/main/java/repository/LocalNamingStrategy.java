@@ -12,17 +12,17 @@ import org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy;
  */
 public class LocalNamingStrategy extends SpringPhysicalNamingStrategy {
 
-    /**
-     * 设置列名前缀。
-     */
-    private static final String _COLUMNPREFIX = "c_";
-
-    @Override
-    public Identifier toPhysicalColumnName(Identifier name, JdbcEnvironment jdbcEnvironment) {
-        Identifier identifier = super.toPhysicalColumnName(name, jdbcEnvironment);
-        if (!identifier.getText().startsWith("c_")) {
-            identifier = new Identifier(_COLUMNPREFIX + identifier.getText(), true);
-        }
-        return identifier;
-    }
+    // /**
+    //  * 设置列名前缀。
+    //  */
+    // private static final String _COLUMNPREFIX = "c_";
+    //
+    // @Override
+    // public Identifier toPhysicalColumnName(Identifier name, JdbcEnvironment jdbcEnvironment) {
+    //     Identifier identifier = super.toPhysicalColumnName(name, jdbcEnvironment);
+    //     if (!identifier.getText().startsWith("c_")) {
+    //         identifier = new Identifier(_COLUMNPREFIX + identifier.getText(), true);
+    //     }
+    //     return identifier;
+    // }
 }

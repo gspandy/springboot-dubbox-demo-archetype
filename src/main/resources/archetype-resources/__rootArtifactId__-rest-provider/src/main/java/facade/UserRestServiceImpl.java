@@ -3,23 +3,20 @@
 #set( $symbol_escape = '\' )
 package ${package}.facade;
 
-import ${package}.converter.UserDataConverter;
 import ${package}.dto.UserDTO;
 import ${package}.entity.User;
 import ${package}.service.UserService;
 
 import com.alibaba.dubbo.config.annotation.Service;
 import com.alibaba.dubbo.rpc.protocol.rest.support.ContentType;
-
+import io.swagger.annotations.Api;
+import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
-
-import io.swagger.annotations.Api;
-import lombok.Getter;
 
 /**
  * 用户信息
@@ -36,7 +33,8 @@ public class UserRestServiceImpl extends ConverterRestServiceBase<UserDTO, User>
     @Autowired
     private UserService service;
 
-    @Autowired
-    private UserDataConverter dataConverter;
-
+    @Override
+    public void forwardAfter(final UserDTO userDTO) {
+        userDTO.setEnterpriseId("锐捷网络");
+    }
 }

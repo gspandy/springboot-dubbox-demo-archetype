@@ -3,13 +3,13 @@
 #set( $symbol_escape = '\' )
 package ${package}.dto;
 
-import ${package}.entity.User;
-
-import java.util.Date;
-
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+
+import java.util.Date;
 
 
 /**
@@ -19,83 +19,34 @@ import lombok.ToString;
  * Time: 17:15
  * To change this template use File | Settings | File Templates.
  */
+@ApiModel("用户信息")
 @ToString
 @Setter
 @Getter
 public class UserDTO {
-
     /**
-     * 编号
+     * 登录名
      */
-    private String id;
-
+    @ApiModelProperty(value = "登录名", required = true)
+    private String loginName;
     /**
-     * 企业名称
+     * 用户名
      */
+    @ApiModelProperty(value = "用户名", required = true)
     private String name;
-
     /**
-     * 修改用户
+     * 加密密码
      */
-    private String displayName;
-
+    @ApiModelProperty(value = "加密密码", required = true)
+    private String password;
     /**
-     * 修改用户
+     * 注册日期
      */
-    private String modifyUser;
-
+    @ApiModelProperty(value = "注册日期")
+    private Date registerDate;
     /**
-     * 创建用户
+     * 所属企业id
      */
-    private String createUser;
-
-    /**
-     * 创建时间
-     */
-    private Date createTime;
-
-    /**
-     * 修改时间
-     */
-    private Date modifyTime;
-
-    /**
-     * 性别
-     */
-    private String sex;
-
-    /**
-     * 头像
-     */
-    private String icon;
-
-    /**
-     * 邮箱
-     */
-    private String email;
-
-    /**
-     * 电话
-     */
-    private String phone;
-
-    /**
-     * 是否自定义
-     */
-    private Boolean isCustom;
-
-    /**
-     * 备注
-     */
-    private String memo;
-
-    /**
-     * 企业编号
-     */
-    private String businessId;
-
-    /**
-     * 企业名称
-     */
-    private String businessName;
+    @ApiModelProperty(value = "所属企业id", required = true)
+    private String enterpriseId;
 }

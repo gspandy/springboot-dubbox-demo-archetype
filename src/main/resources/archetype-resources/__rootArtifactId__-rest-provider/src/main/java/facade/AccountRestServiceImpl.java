@@ -60,36 +60,43 @@ public class AccountRestServiceImpl implements AccountRestService {
     @ApiOperation(value = "获取用户列表", notes = "")
     @Override
     public RestResult signIn(SignInDTO signIn, @Context HttpServletRequest request, @Context HttpServletResponse response) {
-        PasswordHelper passwordHelper = new PasswordHelper();
-        String userName = signIn.getName();
-        String password = signIn.getPassword();
-        String encryptPassword = passwordHelper.encryptPassword(password);
-        UsernamePasswordToken token = new UsernamePasswordToken(userName, encryptPassword, false);
-        Subject subject = SecurityUtils.getSubject();
-        subject.login(token);
+      String userName = signIn.getName();
+      String password = signIn.getPassword();
 
-        SearchFilter searchFilter = new SearchFilter();
-        searchFilter.setFieldName("account");
-        searchFilter.setOperator(SearchFilter.Operator.EQ.name());
-        searchFilter.setValue(signIn.getName());
-        ListFilter listFilter = new ListFilter();
-        listFilter.addFilters(searchFilter);
-        List<User> users = userService.list(listFilter);
-        User user = null;
-        if (users != null && !users.isEmpty()) {
-            user = users.get(0);
-            Session session = subject.getSession(true);
-            session.setAttribute("userId", user.getId());
-            session.setAttribute("businessId", user.getBusinessId());
-            new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    subject.isPermitted("+users+" + PermissionEnum.QUERY.getValue());
-                }
-            }).start();
+      User user = userService.getUserByLoginName(userName);
 
-        }
-        return RestResult.OK(user);
+      if(null == user){
+          throw new UnauthorizedException("用户不存在");
+      }
+
+      PasswordHelper passwordHelper = new PasswordHelper();
+
+      String encryptPassword = passwordHelper.encryptPassword(password);
+
+      if (!encryptPassword.equals(user.getPassword())){
+          throw new UnauthorizedException("密码错误");
+      }
+
+      UsernamePasswordToken token = new UsernamePasswordToken(userName, encryptPassword, false);
+
+      Subject subject = SecurityUtils.getSubject();
+      subject.login(token);
+
+      if (user != null) {
+          Session session = subject.getSession(true);
+          session.setAttribute("userId", user.getId());
+          session.setAttribute("enterpriseId", user.getEnterpriseId());
+
+          new Thread(new Runnable() {
+              @Override
+              public void run() {
+                  subject.isPermitted("+users+" + PermissionEnum.QUERY.getValue());
+              }
+          }).start();
+
+      }
+
+      return RestResult.OK(user);
     }
 
     @POST
