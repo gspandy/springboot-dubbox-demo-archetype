@@ -3,17 +3,14 @@
 #set( $symbol_escape = '\' )
 package ${package}.service;
 
-import ${package}.dto.SearchFilter;
 import ${package}.entity.User;
 import ${package}.repository.UserDao;
-
+import lombok.Getter;
+import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
-import lombok.Getter;
+import javax.validation.constraints.NotNull;
 
 /**
  * 用户信息

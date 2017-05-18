@@ -3,28 +3,25 @@
 #set( $symbol_escape = '\' )
 package ${package}.facade;
 
-import ${package}.dto.ListFilter;
 import ${package}.dto.RestResult;
-import ${package}.dto.SearchFilter;
 import ${package}.dto.SignInDTO;
 import ${package}.dto.SignUpDTO;
 import ${package}.entity.User;
 import ${package}.security.PermissionEnum;
 import ${package}.security.credentials.PasswordHelper;
 import ${package}.service.UserService;
-
 import com.alibaba.dubbo.config.annotation.Service;
 import com.alibaba.dubbo.rpc.protocol.rest.support.ContentType;
-
+import io.swagger.annotations.ApiOperation;
+import lombok.Setter;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.authz.UnauthorizedException;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.Subject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-
-import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -34,9 +31,6 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
-
-import io.swagger.annotations.ApiOperation;
-import lombok.Setter;
 
 /**
  * User: baiqw

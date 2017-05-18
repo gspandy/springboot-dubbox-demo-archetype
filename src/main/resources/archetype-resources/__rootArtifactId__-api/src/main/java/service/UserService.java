@@ -5,6 +5,10 @@ package ${package}.service;
 
 import ${package}.entity.User;
 
+import org.hibernate.validator.constraints.NotBlank;
+
+import javax.validation.constraints.NotNull;
+
 /**
  * 用户信息
  * Created by tom on 2017-03-07 13:25:01.
